@@ -23,7 +23,7 @@ async def link_generator(client: Client, message: Message):
         for channel_message in channel_messages:
             msg_id = await get_message_id(client, channel_message)
             if msg_id:
-                base64_string = await encode(f"get-{msg_id * abs(client.db_channel.id)}")
+                base64_string = await encode(f"get-{msg_id * channel_message.chat.id}")
                 link = f"https://t.me/{client.username}?start={base64_string}"
                 links.append(link)
             else:
